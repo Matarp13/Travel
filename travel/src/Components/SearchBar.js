@@ -14,6 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
+import Fab from '@material-ui/core/Fab';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import './SearchBar.css';
@@ -92,10 +93,15 @@ const styles = theme => ({
 });
 
 class PrimarySearchAppBar extends React.Component {
-  state = {
-    anchorEl: null,
-    mobileMoreAnchorEl: null,
-  };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+          anchorEl: null,
+          mobileMoreAnchorEl: null,
+        };
+    }
 
   handleProfileMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -113,6 +119,10 @@ class PrimarySearchAppBar extends React.Component {
   handleMobileMenuClose = () => {
     this.setState({ mobileMoreAnchorEl: null });
   };
+
+  changeSearchState = () => {
+      this.props.changeSearch(true);
+  }
 
   render() {
     const { anchorEl, mobileMoreAnchorEl } = this.state;
@@ -176,11 +186,12 @@ class PrimarySearchAppBar extends React.Component {
             {/* <Typography className={classes.title} variant="h6" color="inherit" noWrap>
               Material-UI
             </Typography> */}
-
+                    <Fab onClick={this.changeSearchState}>
+                <SearchIcon />
+               </Fab >
 
             <div className={classes.search}>
                 <div className={classes.searchIcon}>
-               <SearchIcon />
               </div>
               <InputBase
                 placeholder="Search…"
