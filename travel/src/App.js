@@ -19,12 +19,15 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="App">
+            <div>{this.state.search ? <SearchResultsPage/> : <div className="App">
             <header className="App-header">
                 <img src={logo} alt="logo" />
-                {this.state.search ? <SearchResultsPage/> : <PrimarySearchAppBar changeSearch={this.changeSearchState}/>}
+                <PrimarySearchAppBar changeSearch={this.changeSearchState}/>
+                
             </header>
+            </div>}
             </div>
+            
         )
     }
 }
